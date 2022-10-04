@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'dart:html';
 
 import 'package:flutter/material.dart';
@@ -16,7 +17,13 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
   final GlobalKey<FormState> _keyform = GlobalKey<FormState>();
   String selectedAgama = '';
   TextEditingController namalengkap = TextEditingController();
+  bool _passwordVisible = true;
   //
+  @override
+  void initState(){
+    _passwordVisible = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -189,21 +196,29 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                   ),
                   SizedBox(height: 20,),
                   TextFormField(
-                    obscureText: true,
+                    obscureText: !_passwordVisible,
                     autocorrect: false,
                     //controller: ,
                     validator: (value){
-                      // if(value == null || value.isEmpty){
-                      //   return 'Mohon Isikan Data Dengan Benar';
-                      // }
-                      // return null;
                       return (value!.isEmpty?
                       "Password Tidak Boleh Kosong" : null);
                     },
                     decoration: InputDecoration(
                       labelText: 'Password',
+                      hintText: 'Masukkan Password',
                       labelStyle: TextStyle(
                         color: Colors.deepPurple,
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _passwordVisible? Icons.visibility : Icons.visibility_off,
+                          color: Theme.of(context).primaryColorDark,
+                        ),
+                        onPressed: (){
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                          });
+                        },
                       ),
                       prefixIcon: Icon(Icons.lock),
                       enabledBorder: OutlineInputBorder(
@@ -236,7 +251,7 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                     ),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.yellow,
-                      fixedSize: Size(150, 50),
+                      fixedSize: Size(150.0, 50.0),
                       shadowColor: Colors.deepPurple,
                     ),
                   ),
