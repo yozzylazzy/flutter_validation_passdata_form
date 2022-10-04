@@ -188,6 +188,32 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                     ],
                   ),
                   SizedBox(height: 20,),
+                  TextFormField(
+                    obscureText: true,
+                    autocorrect: false,
+                    //controller: ,
+                    validator: (value){
+                      // if(value == null || value.isEmpty){
+                      //   return 'Mohon Isikan Data Dengan Benar';
+                      // }
+                      // return null;
+                      return (value!.isEmpty?
+                      "Password Tidak Boleh Kosong" : null);
+                    },
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      labelStyle: TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                      prefixIcon: Icon(Icons.lock),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   ElevatedButton(
                     onPressed: (){
                       //memanggil method validate dari keyform dengan currentState (bisa banyak currentCOntext, dll)
