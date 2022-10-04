@@ -24,60 +24,131 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(10),
-          child: Form(
-            key: _keyform,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            child: Column(
-              children: <Widget>[
-                TextFormField(
-                  controller: namalengkap,
-                  validator: (value){
-                    // if(value == null || value.isEmpty){
-                    //   return 'Mohon Isikan Data Dengan Benar';
-                    // }
-                    // return null;
-                    return (value!.isEmpty?
-                    "Nama Harus Diisi" : null);
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'Nama Lengkap',
-                    labelStyle: TextStyle(
-                      color: Colors.deepPurple,
+          child: Container(
+            margin: EdgeInsets.only(bottom: 20),
+            child: Form(
+              key: _keyform,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              child: Column(
+                children: <Widget>[
+                  TextFormField(
+                    controller: namalengkap,
+                    validator: (value){
+                      // if(value == null || value.isEmpty){
+                      //   return 'Mohon Isikan Data Dengan Benar';
+                      // }
+                      // return null;
+                      return (value!.isEmpty?
+                      "Nama Harus Diisi" : null);
+                    },
+                    decoration: InputDecoration(
+                      labelText: 'Nama Lengkap',
+                      labelStyle: TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                      prefixIcon: Icon(Icons.person),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                   prefixIcon: Icon(Icons.person),
-                   enabledBorder: OutlineInputBorder(
-                     borderRadius: BorderRadius.circular(10),
-                   ),
                   ),
-                ),
-                SizedBox(height: 20,),
-                ElevatedButton(
+                  SizedBox(height: 20,),
+                  TextFormField(
+                    //controller: ,
+                    validator: (value){
+                      // if(value == null || value.isEmpty){
+                      //   return 'Mohon Isikan Data Dengan Benar';
+                      // }
+                      // return null;
+                      return (value!.isEmpty?
+                      "Email Tidak Valid" : null);
+                    },
+                    decoration: InputDecoration(
+                      labelText: 'Email',
+                      labelStyle: TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                      prefixIcon: Icon(Icons.mail),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20,),
+                  TextFormField(
+                    //controller: ,
+                    validator: (value){
+                      // if(value == null || value.isEmpty){
+                      //   return 'Mohon Isikan Data Dengan Benar';
+                      // }
+                      // return null;
+                      return (value!.isEmpty?
+                      "Telepon Tidak Valid" : null);
+                    },
+                    decoration: InputDecoration(
+                      labelText: 'Telepon',
+                      labelStyle: TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                      prefixIcon: Icon(Icons.phone),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20,),
+                  TextFormField(
+                    maxLines: 3,
+                    //controller: ,
+                    validator: (value){
+                      // if(value == null || value.isEmpty){
+                      //   return 'Mohon Isikan Data Dengan Benar';
+                      // }
+                      // return null;
+                      return (value!.isEmpty?
+                      "Alamat Tidak Valid" : null);
+                    },
+                    decoration: InputDecoration(
+                      //contentPadding: const EdgeInsets.symmetric(vertical: 45.0, horizontal: 10.0),
+                      labelText: 'Alamat',
+                      labelStyle: TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                      prefixIcon: Icon(Icons.home),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20,),
+                  ElevatedButton(
                     onPressed: (){
                       //memanggil method validate dari keyform dengan currentState (bisa banyak currentCOntext, dll)
                       if(_keyform.currentState!.validate()){
                         showDialog(context: context, builder: (context){
-                        return AlertDialog(title: const Text('Informasi'),content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                          children: [
+                          return AlertDialog(title: const Text('Informasi'),content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
                               Text("Nama Lengkap : ${namalengkap.text}")
-                          ],
-                        ));});
+                            ],
+                          ));});
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text("Data Register Belum Lengkap....."))
+                            const SnackBar(content: Text("Data Register Belum Lengkap....."))
                         );
                       }
                     },
                     child: Text(
-                      'Submit'
+                        'Submit'
                     ),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.yellow,
                       fixedSize: Size(150, 50),
                       shadowColor: Colors.deepPurple,
                     ),
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
