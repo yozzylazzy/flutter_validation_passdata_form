@@ -1,5 +1,8 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
+enum Gender{Pria, Wanita}
 //create register form statefull
 class RegisterFormStatefull extends StatefulWidget {
   const RegisterFormStatefull({Key? key}) : super(key: key);
@@ -9,7 +12,9 @@ class RegisterFormStatefull extends StatefulWidget {
 }
 
 class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
+  Gender? _gender = Gender.Pria;
   final GlobalKey<FormState> _keyform = GlobalKey<FormState>();
+  String selectedAgama = '';
   TextEditingController namalengkap = TextEditingController();
   //
   @override
@@ -119,6 +124,68 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                  ),
+                  SizedBox(height: 20,),
+                  DropdownButtonFormField<String>(
+                    isExpanded: true,
+                    //controller: ,
+                    validator: (value) => value ==null ? 'Agama Harus Dipilih' : null,
+                      items: <String>['Katolik', 'Kristen', 'Islam', 'Budha', 'Hindu'].map((String value)
+                          {
+                            return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                            );
+                          }).toList(),
+                      onChanged: (value){
+                        setState(() {
+                          selectedAgama = value!;
+                        });
+                      },
+                    decoration: InputDecoration(
+                      labelText: 'Pilih Agama',
+                      labelStyle: TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                      //prefixIcon: Icon(Icons.home),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20,),
+                  Row(
+                    children: [
+                      Flexible(
+                        child: ListTile(
+                            title: const Text("Pria"),
+                            leading: Radio<Gender>(
+                              value: Gender.Pria,
+                              groupValue: _gender,
+                              onChanged: (Gender? value){
+                                setState(() {
+                                  _gender = value;
+                                });
+                              },
+                            ),
+                          ),
+                      ),
+                      SizedBox(width: 20,),
+                      Flexible(
+                        child: ListTile(
+                          title: const Text("Wanita"),
+                          leading: Radio<Gender>(
+                            value: Gender.Wanita,
+                            groupValue: _gender,
+                            onChanged: (Gender? value){
+                              setState(() {
+                                _gender = value;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(height: 20,),
                   ElevatedButton(
