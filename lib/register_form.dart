@@ -17,6 +17,10 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
   final GlobalKey<FormState> _keyform = GlobalKey<FormState>();
   String selectedAgama = '';
   TextEditingController namalengkap = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController telepon = TextEditingController();
+  TextEditingController alamat = TextEditingController();
+
   bool _passwordVisible = true;
   //
   @override
@@ -66,7 +70,7 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                   ),
                   SizedBox(height: 20,),
                   TextFormField(
-                    //controller: ,
+                    controller: email,
                     validator: (value){
                       // if(value == null || value.isEmpty){
                       //   return 'Mohon Isikan Data Dengan Benar';
@@ -88,7 +92,7 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                   ),
                   SizedBox(height: 20,),
                   TextFormField(
-                    //controller: ,
+                    controller: telepon,
                     validator: (value){
                       // if(value == null || value.isEmpty){
                       //   return 'Mohon Isikan Data Dengan Benar';
@@ -111,7 +115,7 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                   SizedBox(height: 20,),
                   TextFormField(
                     maxLines: 3,
-                    //controller: ,
+                    controller: alamat,
                     validator: (value){
                       // if(value == null || value.isEmpty){
                       //   return 'Mohon Isikan Data Dengan Benar';
@@ -237,7 +241,12 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                           return AlertDialog(title: const Text('Informasi'),content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text("Nama Lengkap : ${namalengkap.text}")
+                              Text("Nama Lengkap : ${namalengkap.text}"),
+                              Text("Email : ${email.text}"),
+                              Text("Telepon : ${telepon.text}"),
+                              Text("Alamat : ${alamat.text}"),
+                              Text("Agama : ${selectedAgama}"),
+                              Text("Gender : ${_gender}"),
                             ],
                           ));});
                       } else {
