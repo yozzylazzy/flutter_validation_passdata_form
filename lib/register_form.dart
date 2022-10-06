@@ -34,7 +34,7 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
     return Scaffold(
       //AppBar cuman Title
       drawer: Drawer(
-        width: 200,
+        width: 300,
         backgroundColor: Colors.black45,
         child: ListView(
           padding: EdgeInsets.zero,
@@ -57,7 +57,9 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
               style: TextStyle(
                 color: Colors.white
               )),
-              onTap: (){},
+              onTap: (){
+                Navigator.pop(context);
+              },
             ),
             ListTile(
               leading: Icon(Icons.person, color: Colors.white),
@@ -66,7 +68,7 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                       color: Colors.white
                   )),
                 onTap: (){
-
+                    Navigator.pop(context);
                 },
             )
           ],
