@@ -15,6 +15,7 @@ class RegisterFormStatefull extends StatefulWidget {
 class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
   Gender? _gender = Gender.Pria;
   final GlobalKey<FormState> _keyform = GlobalKey<FormState>();
+  String? _gender2 = 'Pria';
   String selectedAgama = '';
   TextEditingController namalengkap = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -170,12 +171,12 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                       Flexible(
                         child: ListTile(
                             title: const Text("Pria"),
-                            leading: Radio<Gender>(
-                              value: Gender.Pria,
-                              groupValue: _gender,
-                              onChanged: (Gender? value){
+                            leading: Radio<String>(
+                              value: 'Pria',
+                              groupValue: _gender2,
+                              onChanged: (String? value){
                                 setState(() {
-                                  _gender = value;
+                                  _gender2 = value;
                                 });
                               },
                             ),
@@ -185,12 +186,12 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                       Flexible(
                         child: ListTile(
                           title: const Text("Wanita"),
-                          leading: Radio<Gender>(
-                            value: Gender.Wanita,
-                            groupValue: _gender,
-                            onChanged: (Gender? value){
+                          leading: Radio<String>(
+                            value: 'Wanita',
+                            groupValue: _gender2,
+                            onChanged: (String? value){
                               setState(() {
-                                _gender = value;
+                                _gender2 = value;
                               });
                             },
                           ),
@@ -246,7 +247,7 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                               Text("Telepon : ${telepon.text}"),
                               Text("Alamat : ${alamat.text}"),
                               Text("Agama : ${selectedAgama}"),
-                              Text("Gender : ${_gender}"),
+                              Text("Gender : ${_gender2}"),
                             ],
                           ));});
                       } else {
