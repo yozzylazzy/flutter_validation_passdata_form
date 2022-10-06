@@ -73,12 +73,13 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                   TextFormField(
                     controller: email,
                     validator: (value){
-                      // if(value == null || value.isEmpty){
-                      //   return 'Mohon Isikan Data Dengan Benar';
-                      // }
-                      // return null;
-                      return (value!.isEmpty?
-                      "Email Tidak Valid" : null);
+                      bool emailValidation = RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(value.toString());
+                      if(value == null || value.isEmpty || !emailValidation){
+                        return 'Mohon Isikan Email Dengan Benar';
+                      }
+                      return null;
+                      // return (value!.isEmpty && emailValidation!?
+                      // "Email Tidak Valid" : null);
                     },
                     decoration: InputDecoration(
                       labelText: 'Email',
@@ -95,12 +96,15 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                   TextFormField(
                     controller: telepon,
                     validator: (value){
-                      // if(value == null || value.isEmpty){
-                      //   return 'Mohon Isikan Data Dengan Benar';
-                      // }
-                      // return null;
-                      return (value!.isEmpty?
-                      "Telepon Tidak Valid" : null);
+                      bool phoneValidator = RegExp(r'(^(?:[+0]9)?[0-9]{9,14}$)').hasMatch(value.toString());
+                      if(value == null || value.isEmpty||!phoneValidator){
+                         return 'Mohon Isikan Data Dengan Benar';
+                      }
+                      return null;
+                      // return (value!.isEmpty?
+                      // "Telepon Tidak Valid":
+                      //  phoneValidator?
+                      //  "Telepon Tidak Dikenal" : null);
                     },
                     decoration: InputDecoration(
                       labelText: 'Telepon',
