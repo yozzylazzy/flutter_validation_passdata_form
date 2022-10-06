@@ -33,10 +33,64 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
   Widget build(BuildContext context) {
     return Scaffold(
       //AppBar cuman Title
+      drawer: Drawer(
+        width: 200,
+        backgroundColor: Colors.black45,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                //image: Image.asset('images/git.png'),
+                color: Colors.blue,
+                image: DecorationImage(
+                    image: AssetImage("images/git.png"),
+                  alignment: Alignment.center,
+
+                ),
+              ),
+                child: Text(''),
+            ),
+            ListTile(
+              leading: Icon(Icons.home,color: Colors.white),
+              title: const Text('Home',
+              style: TextStyle(
+                color: Colors.white
+              )),
+              onTap: (){},
+            ),
+            ListTile(
+              leading: Icon(Icons.person, color: Colors.white),
+              title: const Text('User',
+                  style: TextStyle(
+                      color: Colors.white
+                  )),
+                onTap: (){
+
+                },
+            )
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: const Text('Register Form'),
         toolbarHeight: 70,
         backgroundColor: Colors.blue,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(icon: Icon(Icons.menu),
+              onPressed: (){
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.search)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.more_vert)),
+
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
