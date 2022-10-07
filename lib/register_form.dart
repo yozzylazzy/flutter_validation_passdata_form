@@ -13,7 +13,7 @@ class RegisterFormStatefull extends StatefulWidget {
 }
 
 class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
-  String? _gender = 'Pria';
+  String? _gender;
   final GlobalKey<FormState> _keyform = GlobalKey<FormState>();
   String? _gender2 = 'Pria';
   String selectedAgama = '';
@@ -21,7 +21,7 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
   TextEditingController email = TextEditingController();
   TextEditingController telepon = TextEditingController();
   TextEditingController alamat = TextEditingController();
-
+  //String? => allownull
   bool _passwordVisible = true;
   //
   @override
@@ -216,6 +216,10 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
       onPressed: (){
         //memanggil method validate dari keyform dengan currentState (bisa banyak currentCOntext, dll)
         if(_keyform.currentState!.validate()){
+          if(_gender==null){
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text("Anda Waria?")));
+          } else {
           showDialog(context: context, builder: (context){
             return AlertDialog(title: const Text('Informasi'),content: Column(
               mainAxisSize: MainAxisSize.min,
@@ -227,7 +231,8 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                 Text("Agama : ${selectedAgama}"),
                 Text("Gender : ${_gender}"),
               ],
-            ));});
+            ));
+          });};
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text("Data Register Belum Lengkap....."))
