@@ -46,7 +46,6 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                 image: DecorationImage(
                     image: AssetImage("images/git.png"),
                   alignment: Alignment.center,
-
                 ),
               ),
                 child: Text(''),
@@ -283,13 +282,15 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
   }
   //Radio Button Menggunakan RadioListStyle
   Widget genderField(){
-    return Container(
-      child: Row(
-        children: [
-          Flexible(
+    return Center(
+      child: Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Flexible(
               child: RadioListTile(
                 value: 'Pria',
-                  groupValue: _gender,
+                groupValue: _gender,
                 onChanged: (String? value){
                   setState(() {
                     _gender = value;
@@ -297,19 +298,20 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
                 },
                 title: const Text("Pria"),
               ),
-          ),
-          Flexible(child: RadioListTile(
-            value: 'Wanita',
+            ),
+            Flexible(child: RadioListTile(
+              value: 'Wanita',
               groupValue: _gender,
               onChanged: (String? value){
                 setState(() {
                   _gender=value;
                 });
               },
-            title: const Text("Wanita"),
-          )),
-        ],
-      ),
+              title: const Text("Wanita"),
+            )),
+          ],
+        ),
+      )
     );
   }
 // Row(
