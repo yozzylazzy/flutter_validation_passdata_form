@@ -284,32 +284,36 @@ class _RegisterFormStatefullState extends State<RegisterFormStatefull> {
   Widget genderField(){
     return Center(
       child: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Flexible(
-              child: RadioListTile(
-                value: 'Pria',
+        child:Align(
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Flexible(
+                child: RadioListTile(
+                  value: 'Pria',
+                  groupValue: _gender,
+                  onChanged: (String? value){
+                    setState(() {
+                      _gender = value;
+                    });
+                  },
+                  title: const Text("Pria"),
+                ),
+              ),
+              Flexible(child: RadioListTile(
+                value: 'Wanita',
                 groupValue: _gender,
                 onChanged: (String? value){
                   setState(() {
-                    _gender = value;
+                    _gender=value;
                   });
                 },
-                title: const Text("Pria"),
-              ),
-            ),
-            Flexible(child: RadioListTile(
-              value: 'Wanita',
-              groupValue: _gender,
-              onChanged: (String? value){
-                setState(() {
-                  _gender=value;
-                });
-              },
-              title: const Text("Wanita"),
-            )),
-          ],
+                title: const Text("Wanita"),
+              )),
+            ],
+          ),
         ),
       )
     );
